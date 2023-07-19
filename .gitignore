@@ -3,10 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-build.gradle
-gradlew
-gradlew.bat
-settings.gradle
+
 
 ### IntelliJ IDEA ###
 .idea
@@ -42,3 +39,6 @@ bin/
 ### Mac OS ###
 .DS_Store
 .idea/workspace.xml
+
+# Ignore Gradle build output directory
+build
