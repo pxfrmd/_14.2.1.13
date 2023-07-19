@@ -14,8 +14,7 @@ public class TipServiceTest {
 
     @ParameterizedTest(name = "итерация #{index}")
     @DisplayName("Входящие значения: -1, 0, 999, 1000, 1001")
-    @ValueSource(ints = {1, 0, 999, 1000, 1001})
-
+    @ValueSource(ints = {-1, 0, 999, 1000, 1001})
     void positiveTestingWithNormalParams(int amount) {
         BigDecimal newAmount = BigDecimal.valueOf(amount);
         BigDecimal BOUNDARY = BigDecimal.valueOf(1000);
@@ -28,17 +27,17 @@ public class TipServiceTest {
         if (newAmount.compareTo(BOUNDARY) < 0) {
             expected = newAmount.multiply(TEN_PERCENT);
         } else {
-            expected = newAmount.multiply(FIVE_PERCENT);;
+            expected = newAmount.multiply(FIVE_PERCENT);
         }
-        assertEquals (expected, result);
+        assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Входящие значение Null")
+    @NullSource
+    void negativeTestingWithNull(BigDecimal amount) {
+
+        assertThrows(NullPointerException.class, () -> tipService.roundTips(amount));
 
     }
-        @ParameterizedTest
-        @DisplayName("Входящие значение Null")
-        @NullSource
-        void negativeTestingWithNull(BigDecimal amount){
-
-            assertThrows(NullPointerException.class,() -> tipService.roundTips(amount));
-
-        }
 }
